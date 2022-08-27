@@ -33,12 +33,17 @@
  * @returns {Context} The child context
  */
 export function createContext(parentOrData, data) {
+
   if (data) {
+    // creates object and sets proto to parent, also adds new propety of child 
+    // by creating a shallow copy of object
     let ctx = Object.create(parentOrData);
     ctx = Object.assign(ctx, data);
     return ctx;
   }
   else {
+    // creats hierarchy by setting prototype property of newly created object 
+    // to parent, used when only one argument is passed
     return Object.create(parentOrData);
   }
 }

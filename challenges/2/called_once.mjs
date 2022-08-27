@@ -23,16 +23,25 @@
  */
 export function once(callback) {
 
+  // While using JSON.stringify to create keys it converts
+  // some primitive values to null this functions helps it
+  // return valid key for each argument
   const replacer = (key) => key;
 
   // `callback` must be called once!
   // Its return value must be memoized.
+
+  // using cache to store the result of first call to function
   const cache = {};
 
   return (...args) => {
+    // if the result is in the cache returns it from cache
     if (JSON.stringify(args, replacer) in cache) {
       return cache[JSON.stringify(args, replacer)];
     }
+
+    // if it's not found in the cache calculate the result
+    // store it in cache and also return the same value
     const result = callback(...args);
     cache[JSON.stringify(args, replacer)] = result;
     return result;

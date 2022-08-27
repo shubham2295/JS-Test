@@ -21,6 +21,8 @@
 
 const map = new Map();
 export function setData(object, value) {
+  // Using map to set value to object, as map is the data structure which
+  // can use anything as key in this case we are using object as a key
   map.set(object, value);
 }
 
@@ -32,6 +34,8 @@ export function setData(object, value) {
  * @returns {T | undefined}
  */
 export function getData(object) {
+
+  // Accessing the value stored in map, by using object as a key
   return map.get(object);
 
 }
